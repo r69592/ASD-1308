@@ -29,12 +29,13 @@
 	<body>
 
 		<div id="main">
-			<!-- ============================================================-->
 
-			<section data-role="page" id="home" data-theme="a" data-position="fixed">
+			<!-- ============================ Home ================================-->
+			<section data-role="page" id="home" data-theme="b" data-position="fixed">
 
 				<header data-role="header">
 					<h1>Daily Chores</h1>
+
 				</header>
 				
 				<section data-role="content">
@@ -43,59 +44,145 @@
 					</div>
 					<br />
 
-					<ul data-role="listview" data-filter="true" data-filter-placeholder="Search fruits..." data-inset="true">
-					    <li><a href="#">test1</a></li>
-					    <li><a href="#">test2</a></li>
-					    <li><a href="#">test3</a></li>
-					    <li><a href="#">test4</a></li>
-					    <li><a href="#">test5</a></li>
-					    <li><a href="#">test6</a></li>
-					</ul>
 
+
+			<div class="content" data-role="content" >
+				
+				<ul data-role="listview" data-inset="false" data-divider-theme="a">
+					<li data-role="list-divider">Current Chores</li>
+					<li data-theme="c"><a href="#unfinishedChore" >Current Chore</a></li>
+					<li data-theme="c"><a href="#unfinishedChore" >Current Chore</a></li>
+					<li data-theme="c"><a href="#unfinishedChore" >Current Chore</a></li>
+					<li data-theme="c"><a href="#unfinishedChore" >Current Chore</a></li>
+			
+					<li data-role="list-divider">Upcoming Chores</li>
+					<li data-theme="c"><a href="#unfinishedChore" >Upcoming Chore</a></li>
+					<li data-theme="c"><a href="#unfinishedChore" >Upcoming Chore</a></li>
+					<li data-theme="c"><a href="#unfinishedChore" >Upcoming Chore</a></li>
+					<li data-theme="c"><a href="#unfinishedChore" >Upcoming Chore</a></li>
+				</ul>
+		
+
+					
 				</section>
 
 				<footer data-role="footer" data-position="fixed">
 					<nav data-role="navbar">
 						<ul>
 							<li><a href="#home" data-icon="home" class="ui-btn-active">Home</a></li>
-							<li><a href="#addItem" data-icon="edit">New</a></li>
+							<li><a href="#addItem" data-icon="edit">Add</a></li>
 							<li><a href="#info" data-icon="info">Info</a></li>
 						</ul>
 					</nav>
 				</footer>
 			</section>
-			<!-- ============================================================-->
 
-			<section data-role="page" id="addItem" data-theme="a" data-position="fixed">
+			<!-- ============================== Add Item ==============================-->
+			<section data-role="page" id="addItem" data-theme="b" data-position="fixed">
 
 				<header data-role="header">
 					<h1>Daily Chores</h1>
 				</header>
 				
-				<section data-role="content">
-			
+				<section data-role="content" data-theme="c">
+				
+					<h3 class="contentCenter">Add Chore</h3>
+
+					<section data-role="controlgroup">
+						
+						<form action="" id="itemForm">
+							<h4><span class="errors">* Fields are required</span></h4>
+
+							<ul id="errors"></ul>
+
+							<!-- Chore text field -->
+							<labelfor="chore"><span class="errors">*</span> Description:</label>
+							<input type="text" name="chore" id="chore" placeholder="i.e: Wash clothes" data-clear-btn="true" class="required" />
+
+							<!-- Drop Down Menu -->
+							<label for="location" id="select"><span class="errors">*</span> Select a chore location:</label>
+							<select name="choreLocation" id="location" data-native-menu="false">
+								<option data-placeholder="true" class="required">-- Please Choose A Location --</option>
+								<option value="Bathroom">Bathroom</option>
+								<option value="Bedroom">Bedroom</option>
+								<option value="Kitchen">Kitchen</option>
+								<option value="Laundry">Laundry</option>
+								<option value="Living Room">Living Room</option>
+								<option value="Yard">Yard</option>
+							</select>
+
+							<!-- Radio buttons -->
+							<div data-role="fieldcontain" >	
+							<fieldset data-role="controlgroup" data-type="horizontal">
+								<legend>Level of Difficulty:</legend>
+								
+								<input type="radio" value="easy" name="difficulty" id="easy">
+								<label for="easy">Easy</label>
+								
+								<input type="radio" value="medium" name="difficulty" id="medium">
+								<label for="medium">Medium</label>
+								
+								<input type="radio" value="hard" name="difficulty" id="hard">
+								<label for="hard">Hard</label>
+
+							</fieldset>
+							</div>
+
+							<!-- Date and note area of the form -->
+							<div data-role="fieldcontain">
+
+								<label for="finishDate">Completion Date:</label>
+								<input type="date" id="finishDate" />
+
+
+								<label for="notes">Notes</label>
+								<textarea id="notes" placeholder="i.e: Need to complete this by 01/01/13"></textarea>
+
+							</div>
+
+							<div data-role="fieldcontain">
+
+								<input type="submit" id="saveButton" value="Save" />
+
+							</div>
+
+						</form>
+
+					</section>
+
+
 				</section>
 
 				<footer data-role="footer" data-position="fixed">
 					<nav data-role="navbar">
 						<ul>
 							<li><a href="#home" data-icon="home" >Home</a></li>
-							<li><a href="#addItem" data-icon="edit" class="ui-btn-active">New</a></li>
+							<li><a href="#addItem" data-icon="edit" class="ui-btn-active">Add</a></li>
 							<li><a href="#info" data-icon="info">Info</a></li>
 						</ul>
 					</nav>
 				</footer>
 			</section>
-			<!-- ============================================================-->
 
-			<section data-role="page" id="info" data-theme="a" data-position="fixed">
+			<!-- ============================== Info ==============================-->
+			<section data-role="page" id="info" data-theme="b" data-position="fixed">
 
 				<header data-role="header">
 					<h1>Daily Chores</h1>
 				</header>
 				
 				<section data-role="content">
-			
+				
+					<h3>Info</h3>
+					<p>Daily Chores is to help keep up with chores that need to be completed. It can be great for a reminder or if there are more than one person performing the chores it can help the entire group know what is done and what is left to finish.</p>
+
+					
+					<p><a href="https://github.com/r69592/ASD-1308">GitHub Repo</a></p>
+
+					
+					<p><a href="htp://jamesblackdesigns.com">Developers Website</a></p>
+
+
 				</section>
 
 				<footer data-role="footer" data-position="fixed">
@@ -103,14 +190,38 @@
 					<nav data-role="navbar">
 						<ul>
 							<li><a href="#home" data-icon="home" >Home</a></li>
-							<li><a href="#addItem" data-icon="edit">New</a></li>
+							<li><a href="#addItem" data-icon="edit">Add</a></li>
 							<li><a href="#info" data-icon="info" class="ui-btn-active">Info</a></li>
 						</ul>
 					</nav>
 
 				</footer>
 			</section>
-			<!-- ============================================================-->
+
+			<!-- ============================ Unfinished Chores ================================-->
+			<section id="unfinishedChore" data-role="page">
+
+				<header data-role="header">
+
+					<h1>Daily Chores</h1>
+
+				</header>
+
+				<section class="content" data-role="content">
+
+					<p>Chore due</p>
+
+				</section>
+
+				<footer data-role="footer" data-position="fixed">
+
+					<h3><i>James Black Designs</i></h3>
+
+				</footer>
+
+
+			</section>
+
 
 		</div>
 

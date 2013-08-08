@@ -10,6 +10,6 @@ $("addItem").on("pageinit", function(){
 
 });
 
-$("edit").on("pageinit", function(){
+$("info").on("pageinit", function(){
 
 });
