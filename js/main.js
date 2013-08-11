@@ -57,12 +57,12 @@ var choreObj = [
 
 
 $("#home").on("pageinit", function(){
-
+	
 	$('#choreList').on('click', function (){
 		$('#currentChores').append('<ul>');
-
+		
 		var choreInfo = "";
-
+		
 		for (i=0; i<choreObj.length; i++) {
 
 			choreInfo += "<li>" + "Name:" + ' ' 
@@ -80,20 +80,23 @@ $("#home").on("pageinit", function(){
 								+ "</li>";
 			choreInfo += "<br />";
 			$('#currentChores ul').html(choreInfo);
-
+			
 			} 
 	});
 
-		$("#currentChores").append("<li>");
+		$("#currentChores").append("<ul>");
+		
 		var choreIds = "";
 		var choreHeader = "<li>" + "Current Chores" + "</li>";
+		console.log(choreIds);
 		$("#currentChores").html(choreHeader);
 		for (i=0; i<choreObj.length; i++) {
 			choreIds += '<li><a data-key="' 
 					 + choreObj[i].id + '" href="#" class="choreList">' 
 					 + choreObj[i].choreName + '</a></li>';
-
+			
 			$("#currentChores ").html(choreIds);
+			console.log(choreIds);
 		}
 
 });
@@ -109,4 +112,12 @@ $("#info").on("pageinit", function(){
 $("#unfinishedChore").on("pageinit", function(){
 
 });
+
+
+
+
+
+
+
+
 
