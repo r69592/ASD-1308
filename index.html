@@ -51,7 +51,7 @@
 
 				
 				<ul data-role="listview" data-inset="true" data-divider-theme="a" id="currentChores">
-					<li data-role="list-divider">Current Chores</li>
+					<li data-role="list-divider" >Current Chores</li>
 					
 				</ul>
 				
@@ -140,6 +140,8 @@
 
 							</div>
 
+							<a href="#recorderrors" id="recorderrorslink" data-rel="dialog" style="display: none" >Open Errors</a>
+
 						</form>
 
 					</section>
@@ -213,8 +215,25 @@
 
 				</footer>
 
-
+			<!-- ============================ recorderrors ================================-->
 			</section>
+
+			<section data-role="dialog" id="recorderrors">
+
+            <header data-role="header" data-position="fixed">
+              <h1>Missing Fields</h1>
+
+            </header>
+
+            <div data-role="content">
+              
+              <ul>
+                <li>Test</li>
+              </ul>
+            
+            </div>
+
+          </section>
 
 
 		</div>
