@@ -57,6 +57,21 @@ var choreObj = [
 
 
 $("#home").on("pageinit", function(){
+
+		//$("#currertChores li").after("<li>");
+		
+		var choreIds = "";
+		var choreHeader = "<li>" + "Current Chores" + "</li>";
+		console.log(choreIds);
+		$("#currentChores").html(choreHeader);
+		for (i=0; i<choreObj.length; i++) {
+			choreIds += '<li><a data-key="' 
+					 + choreObj[i].id + '" href="#" class="choreList">' 
+					 + choreObj[i].choreName + '</a></li>';
+			
+			$("<li data-role="list-divider" id="currentChores">").appendTo(choreIds);
+			console.log(choreIds);
+		}
 	
 	$('#choreList').on('click', function (){
 		$('#currentChores').append('<ul>');
@@ -76,7 +91,7 @@ $("#home").on("pageinit", function(){
 								+ "Notes:"  + ' ' 
 								+ choreObj[i].choreNotes + ' ' 
 								+ '<a data-key="' 
-								+ choreObj[i].id + '" href="#" class="choreList">Edit</a>' 
+								+ choreObj[i].id + '"<a href="#" class="choreList">Edit</a>' 
 								+ "</li>";
 			choreInfo += "<br />";
 			$('#currentChores ul').html(choreInfo);
@@ -84,20 +99,7 @@ $("#home").on("pageinit", function(){
 			} 
 	});
 
-		$("#currentChores").append("<ul>");
-		
-		var choreIds = "";
-		var choreHeader = "<li>" + "Current Chores" + "</li>";
-		console.log(choreIds);
-		$("#currentChores").html(choreHeader);
-		for (i=0; i<choreObj.length; i++) {
-			choreIds += '<li><a data-key="' 
-					 + choreObj[i].id + '" href="#" class="choreList">' 
-					 + choreObj[i].choreName + '</a></li>';
-			
-			$("#currentChores ").html(choreIds);
-			console.log(choreIds);
-		}
+
 
 });
 
