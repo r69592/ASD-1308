@@ -64,18 +64,24 @@ $('#home').on('pageinit', function(){
         for (i=0; i<choreObj.length; i++) {
             choreIds += '<li><a data-key="'+ 
                      choreObj[i].id + '" href="#" class="choreList">' + 
-                     choreObj[i].choreName + '</a></li>';
+                     choreObj[i].choreName + ' : ' + 
+                     choreObj[i].choreDate + ' </a></li>';
         }    
         $('#currentChores').append(choreIds);
                     
         $('#currentChores').listview('refresh');
         
-       var all_values = [],
-       data           = $("li data-key").data();
-       for (var key in data) {
-       	all_values.push([key, data[key]]);
-       }
-       console.log(all_values);
+       $('.choreList').on('click', function() {
+        var myDiplayId = $('.choreList');
+        for (i=0; i<myDiplayId.length; i++){
+            console.log(myDiplayId);
+           $('a[data-key^=').appendTo("#recorderrors ul");
+        }
+            
+       });
+       
+
+      
     /*
     $('.choreList').on('click', function (){
         $('#currentChores').append('<ul>');
@@ -111,14 +117,42 @@ $('#home').on('pageinit', function(){
 
 
 // ========= Every thing needed for AddItem page to work =========
-$('#addItem').on('pageinit', function(){
+$('#addItem').on('pageinit', function(e){
+        e.preventDefault();
+       $('#saveButton').on('click', function(e){
+           $('#itemForm').validate({
+            invalidHandler: function(form, validator) {
+              
+            var html = "";
+            for (var key in validator.submitted) {
+                var label = $('label[for^="'+ key +'"]').not('[generated]');
+                    
+                var legend = label.closest('fieldset').find('.ui-controlgroup-label');
+                console.log(legend);
+                var fieldName = legend.length ? legend.text() : label.text();
+                console.log(fieldName);
+                html += "<li>"+ fieldName +"</li>";
+            }
+            $("#recorderrors ul").html(html);
+            console.log(html);
+            },
+            submitHandler: function() {
+            var data = myForm.serializeArray();
+            storeData(data);
+            console.log(data);
+        }
 
-	/*$('#saveButton').on('click', function(){
+    });
 
-		var myForm = $('#itemForm'),
+            //e.preventDefault();
+            //var myFormValidate = $('form').submit().validate;
+            //console.log(myFormValidate);
+            //return false;
+       });
+		/*var myForm = $('#itemForm'),
         recordErrors = $("#recorderrorslink");
 
-        myForm.validate({
+        $('#saveButton').validate({
         invalidHandler: function(form, validator) {
             recordErrors.click();
             console.log(validator.submitted);
