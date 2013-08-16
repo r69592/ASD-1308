@@ -2,62 +2,12 @@
 // 1308
 // ASD
 
-// ========= JSON Object =========
 
-var choreObj = [
-    {
-        id : 12345,
-        choreName : "Dishes",
-        choreLocation : "Kitchen",
-        choreDifficulty    : "Medium",
-        choreDate : "08/21/13",
-        choreNotes : "Test object 1"
-    },
-    {
-        id    : 23456,
-        choreName : "Clean The Shower",
-        choreLocation : "Bathroom",
-        choreDifficulty : "Medium",
-        choreDate : "08/22/13",
-        choreNotes : "Test object 2"
-    },
-    {
-        id : 345678,
-        choreName : "Make Bed",
-        choreLocation : "Bedroom",
-        choreDifficulty : "Medium",
-        choreDate : "08/23/13",
-        choreNotes : "Test object 3"
-    },
-    {
-        id : 456789,
-        choreName : "Clothes",
-        choreLocation : "Laundry",
-        choreDifficulty : "Medium",
-        choreDate : "08/24/13",
-        choreNotes : "Test object 4"
-    },
-    {
-        id : 567891,
-        choreName : "Vaccum",
-        choreLocation : "Living Room",
-        choreDifficulty : "Medium",
-        choreDate : "08/25/13",
-        choreNotes : "Test object 5"
-    },
-    {
-        id : 678912,
-        choreName : "Grass",
-        choreLocation : "Yard",
-        choreDifficulty : "Medium",
-        choreDate : "08/26/13",
-        choreNotes : "Test object 6"
-    }
-];
 
 // ========= Every thing needed for home page to work =========
 $('#home').on('pageinit', function(){
 
+<<<<<<< HEAD
         
         var choreIds = "";
         
@@ -106,16 +56,68 @@ $('#home').on('pageinit', function(){
             choreInfo += "<br />";
             $('#currentChores ul').html(choreInfo);
             
+=======
+
+      
+
+    $(function(){
+        //$('#currentChores').empty();
+        $.ajax({
+            url: 'js/main.json',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response){
+                $.each(response, function(key, val) {
+                    choreIds = '<li><a data-key="'+
+                    val.id + '" href="#" class="choreList">' + 
+                    val.choreName + ' : ' + 
+                    val.choreDate + ' </a></li>';
+
+                    $('#currentChores').append(choreIds);
+                    $('#currentChores').listview('refresh');
+                    
+                });
+                
+               
+>>>>>>> gh-pages
             }
-    
+        })
+       });
+      
+        $(function(){
+            console.log('XML start working');
+        $.ajax({
+            url: 'js/main.xml',
+            type: 'GET',
+            dataType: 'xml',
+            success: function(response){
+                console.log('This is working');
+                $(response).find('chores chore').each(function(){
+                 
+                
+                
 
-    });
-    */
+                    var id   = $(this).find('id').text(),
+                        name = $(this).find('name').text(),
+                        date = $(this).find('date').text();
 
+                        choreIds = '<li><a data-key="'+
+                    id + '" href="#" class="choreList">' + 
+                    name + ' : ' + 
+                    date + ' </a></li>';
 
-});
+                    $('#currentChoresXml').append(choreIds);
+                    $('#currentChoresXml').listview('refresh');
+                    console.log(currentChoresXml);
 
+                });
+                
+              
+            }
+        })
+       });
 
+<<<<<<< HEAD
 // ========= Every thing needed for AddItem page to work =========
 $('#addItem').on('pageinit', function(e){
         e.preventDefault();
@@ -153,31 +155,30 @@ $('#addItem').on('pageinit', function(e){
         recordErrors = $("#recorderrorslink");
 
         $('#saveButton').validate({
-        invalidHandler: function(form, validator) {
-            recordErrors.click();
-            console.log(validator.submitted);
-                
-            var html = "";
-            for (var key in validator.submitted) {
-                var label = $('label[for^="'+ key +'"]').not('[generated]');
-                    
-                var legend = label.closest('fieldset').find('.ui-controlgroup-label');
-                console.log(legend);
-                var fieldName = legend.length ? legend.text() : label.text();
-                console.log(fieldName);
-                html += "<li>"+ fieldName +"</li>";
-            }
-            $("#recorderrors ul").html(html);
-            console.log(html);
-            },
-            submitHandler: function() {
-        	var data = myForm.serializeArray();
-            storeData(data);
-            console.log(data);
-        }
+=======
 
-	});
-	*/
+});
+
+
+// ========= Every thing needed for AddItem page to work =========
+$('#addItem').on('pageinit', function(e){
+   var myForm = $('#itemForm'); 
+    $('#saveButton').on('click', function(e){
+       $('#itemForm').validate({
+>>>>>>> gh-pages
+        invalidHandler: function(form, validator) {
+              
+        return false;
+        },
+        submitHandler: function() {
+            var data = myForm.serializeArray();
+            storeData(data);
+            
+        }
+        
+        });    
+    });
+
 	
 
 });
@@ -194,7 +195,23 @@ $('#unfinishedChore').on('pageinit', function(){
 
 
 
-
+      
+        var storeData = function(data, key){
+        if (!key) {
+                var id = Math.floor(Math.random() * 1000001);
+            } else {
+                id = key;
+            }
+            var item = {};
+            item.chore = ["Names :", $("#chore").val()];
+            item.area = ["Location :", $("#location").val()];
+            item.choreDate = ["Completion Date :", $("#finishDate").val()];
+            item.notes = ["Notes :", $("#notes").val()];
+            localStorage.setItem(id, JSON.stringify(item));
+            alert("Chore Saved!");
+        
+        };
+      
 
 
 
