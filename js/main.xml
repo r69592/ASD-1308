@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<chores>
+	<chore>
+		<id>12345</id>
+		<name>Dishes</name>
+		<location>Kitchen</location>
+		<difficulty>Medium</difficulty>
+		<date>08/21/13</date>
+		<notes>Test object 1</notes>
+	<chore>
+	<chore>
+		<id>23456</id>
+		<name>Clean The Shower</name>
+		<location>Bathroom</location>
+		<difficulty>Medium</difficulty>
+		<date>08/22/13</date>
+		<notes>Test object 2</notes>
+	<chore>
+	<chore>
+		<id>345678</id>
+		<name>Make Bed</name>
+		<location>Bedroom</location>
+		<difficulty>Medium</difficulty>
+		<date>08/23/13</date>
+		<notes>Test object 3</notes>
+	<chore>
+	<chore>
+		<id>456789</id>
+		<name>Clothes</name>
+		<location>Laundry</location>
+		<difficulty>Medium</difficulty>
+		<date>08/24/13</date>
+		<notes>Test object 4</notes>
+	<chore>
+	<chore>
+		<id>567891</id>
+		<name>Vaccum</name>
+		<location>Living Room</location>
+		<difficulty>Medium</difficulty>
+		<date>08/25/13</date>
+		<notes>Test object 5</notes>
+	<chore>
+	<chore>
+		<id>678912</id>
+		<name>Grass</name>
+		<location>Yard</location>
+		<difficulty>Medium</difficulty>
+		<date>08/26/13</date>
+		<notes>Test object 6</notes>
+	<chore>
+	
+</chores>
