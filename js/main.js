@@ -3,7 +3,6 @@
 // ASD
 
 
-
 // ========= Every thing needed for home page to work =========
 $('#home').on('pageinit', function(){
 
