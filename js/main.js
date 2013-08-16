@@ -3,59 +3,10 @@
 // ASD
 
 
+
 // ========= Every thing needed for home page to work =========
 $('#home').on('pageinit', function(){
 
-<<<<<<< HEAD
-        
-        var choreIds = "";
-        
-        for (i=0; i<choreObj.length; i++) {
-            choreIds += '<li><a data-key="'+ 
-                     choreObj[i].id + '" href="#" class="choreList">' + 
-                     choreObj[i].choreName + ' : ' + 
-                     choreObj[i].choreDate + ' </a></li>';
-        }    
-        $('#currentChores').append(choreIds);
-                    
-        $('#currentChores').listview('refresh');
-        
-       $('.choreList').on('click', function() {
-        var myDiplayId = $('.choreList');
-        for (i=0; i<myDiplayId.length; i++){
-            console.log(myDiplayId);
-           $('a[data-key^=').appendTo("#recorderrors ul");
-        }
-            
-       });
-       
-
-      
-    /*
-    $('.choreList').on('click', function (){
-        $('#currentChores').append('<ul>');
-        
-        var choreInfo = "";
-        
-        for (i=0; i<choreObj.length; i++) {
-
-            choreInfo += "<li>" + "Name:" + ' ' 
-                                + choreObj[i].choreName + ' ' 
-                                + "Location:" + ' ' 
-                                + choreObj[i].choreLocation + ' ' 
-                                + "Difficulty:" + ' ' 
-                                + choreObj[i].choreDifficulty + ' ' 
-                                + "Date:" + ' ' 
-                                + choreObj[i].choreDate + ' ' 
-                                + "Notes:"  + ' ' 
-                                + choreObj[i].choreNotes + ' ' 
-                                + '<a data-key="' 
-                                + choreObj[i].id + '"<a href="#" class="choreList">Edit</a>' 
-                                + "</li>";
-            choreInfo += "<br />";
-            $('#currentChores ul').html(choreInfo);
-            
-=======
 
       
 
@@ -67,10 +18,10 @@ $('#home').on('pageinit', function(){
             dataType: 'json',
             success: function(response){
                 $.each(response, function(key, val) {
-                    choreIds = '<li><a data-key="'+
-                    val.id + '" href="#" class="choreList">' + 
-                    val.choreName + ' : ' + 
-                    val.choreDate + ' </a></li>';
+                   var choreIds = '<li><a data-key="'+
+                       val.id + '" href="#" class="choreList">' + 
+                       val.choreName + ' : ' + 
+                       val.choreDate + ' </a></li>';
 
                     $('#currentChores').append(choreIds);
                     $('#currentChores').listview('refresh');
@@ -78,83 +29,34 @@ $('#home').on('pageinit', function(){
                 });
                 
                
->>>>>>> gh-pages
             }
-        })
+        });
        });
       
-        $(function(){
-            console.log('XML start working');
+    $(function(){
+            
         $.ajax({
             url: 'js/main.xml',
             type: 'GET',
             dataType: 'xml',
             success: function(response){
-                console.log('This is working');
-                $(response).find('chores chore').each(function(){
-                 
-                
-                
+                console.log('test xml');
+              // assume that the XML above is in a string named "xml"
+            var data = $.parseXML(xml);
 
-                    var id   = $(this).find('id').text(),
-                        name = $(this).find('name').text(),
-                        date = $(this).find('date').text();
-
-                        choreIds = '<li><a data-key="'+
-                    id + '" href="#" class="choreList">' + 
-                    name + ' : ' + 
-                    date + ' </a></li>';
-
-                    $('#currentChoresXml').append(choreIds);
-                    $('#currentChoresXml').listview('refresh');
-                    console.log(currentChoresXml);
-
-                });
-                
-              
+            // wrap the XML in a jQuery object to make it easier to work with
+            var items = $( data );
+            chores.find("chore").each(function(){
+                var item = $(this);
+                console.log("Name: ", item.find("name"));
+});
             }
-        })
-       });
-
-<<<<<<< HEAD
-// ========= Every thing needed for AddItem page to work =========
-$('#addItem').on('pageinit', function(e){
-        e.preventDefault();
-       $('#saveButton').on('click', function(e){
-           $('#itemForm').validate({
-            invalidHandler: function(form, validator) {
-              
-            var html = "";
-            for (var key in validator.submitted) {
-                var label = $('label[for^="'+ key +'"]').not('[generated]');
-                    
-                var legend = label.closest('fieldset').find('.ui-controlgroup-label');
-                console.log(legend);
-                var fieldName = legend.length ? legend.text() : label.text();
-                console.log(fieldName);
-                html += "<li>"+ fieldName +"</li>";
-            }
-            $("#recorderrors ul").html(html);
-            console.log(html);
-            },
-            submitHandler: function() {
-            var data = myForm.serializeArray();
-            storeData(data);
-            console.log(data);
-        }
+           
+        });
 
     });
 
-            //e.preventDefault();
-            //var myFormValidate = $('form').submit().validate;
-            //console.log(myFormValidate);
-            //return false;
-       });
-		/*var myForm = $('#itemForm'),
-        recordErrors = $("#recorderrorslink");
-
-        $('#saveButton').validate({
-=======
+    //$.localStorage();
 
 });
 
@@ -164,7 +66,6 @@ $('#addItem').on('pageinit', function(e){
    var myForm = $('#itemForm'); 
     $('#saveButton').on('click', function(e){
        $('#itemForm').validate({
->>>>>>> gh-pages
         invalidHandler: function(form, validator) {
               
         return false;
