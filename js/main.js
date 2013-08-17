@@ -11,17 +11,17 @@ $('#home').on('pageinit', function(){
       
 
     $(function(){
-        //$('#currentChores').empty();
+        
         $.ajax({
             url: 'js/main.json',
             type: 'GET',
             dataType: 'json',
             success: function(response){
                 $.each(response, function(key, val) {
-                    choreIds = '<li><a data-key="'+
-                    val.id + '" href="#" class="choreList">' + 
-                    val.choreName + ' : ' + 
-                    val.choreDate + ' </a></li>';
+                   var choreIds = '<li><a data-key="'+
+                       val.id + '" href="#" class="choreList">' + 
+                       val.choreName + ' : ' + val.choreLocation + '<br/>' + 
+                       val.choreDate + ' </a></li>';
 
                     $('#currentChores').append(choreIds);
                     $('#currentChores').listview('refresh');
@@ -30,41 +30,67 @@ $('#home').on('pageinit', function(){
                 
                
             }
-        })
-       });
+        });
+    });
       
-        $(function(){
-            console.log('XML start working');
+    $(function(){
+            
         $.ajax({
             url: 'js/main.xml',
             type: 'GET',
             dataType: 'xml',
             success: function(response){
-                console.log('This is working');
-                $(response).find('chores chore').each(function(){
-                 
-                
-                
+                $(response).find('chores').find('chore').each(function(){
 
-                    var id   = $(this).find('id').text(),
-                        name = $(this).find('name').text(),
-                        date = $(this).find('date').text();
+                var id = $(this).find('id').text(),
+                name = $(this).find('name').text(),
+                location = $(this).find('location').text(),
+                date = $(this).find('date').text();
 
-                        choreIds = '<li><a data-key="'+
-                    id + '" href="#" class="choreList">' + 
-                    name + ' : ' + 
-                    date + ' </a></li>';
+                var choreIds = '<li><a data-key="'+
+                  id + '" href="#" class="choreList">' + 
+                  name + ' : ' + location + '<br/>' +
+                  date + ' </a></li>';
 
-                    $('#currentChoresXml').append(choreIds);
-                    $('#currentChoresXml').listview('refresh');
-                    console.log(currentChoresXml);
+                  $('#currentChoresXml').append(choreIds);
+                  $('#currentChoresXml').listview('refresh');
+              });
+            }           
+        });
+    }); 
 
-                });
-                
-              
-            }
-        })
-       });
+
+
+$(function(e){
+    
+    if (localStorage.length === 0) {
+            alert("Storage is Empty.");
+           
+    } else {
+        $(localStorage).each(function(i){
+             var choreIds = '<li><a data-key="'+
+                  key + '" href="#" class="choreList">' + 
+                  myId + ' : <br/>' +
+                  date + ' </a></li>';
+
+            var key = localStorage.key(i);
+            var value = localStorage.getItem(key);
+            var obj = JSON.parse(value);
+               
+            var myId = obj['chore'];
+            var date = obj['choreDate'];
+
+            console.log(obj['chore']);
+            console.log(myId); 
+            $('#currentChoresLocalStorage').append(choreIds);
+            $('#currentChoresLocalStorage').listview('refresh'); 
+        });        
+    }
+});
+
+
+
+
 
 
 });
