@@ -3,7 +3,6 @@
 // ASD
 
 
-
 // ========= Every thing needed for home page to work =========
 $('#home').on('pageinit', function(){
 
@@ -60,7 +59,6 @@ $('#home').on('pageinit', function(){
     }); 
 
 
-
 $(function(e){
     
     if (localStorage.length === 0) {
@@ -72,6 +70,7 @@ $(function(e){
                   key + '" href="#" class="choreList">' + 
                   myId + ' : <br/>' +
                   date + ' </a></li>';
+            
 
             var key = localStorage.key(i);
             var value = localStorage.getItem(key);
@@ -80,8 +79,8 @@ $(function(e){
             var myId = obj['chore'];
             var date = obj['choreDate'];
 
-            console.log(obj['chore']);
-            console.log(myId); 
+            console.log(date);
+            
             $('#currentChoresLocalStorage').append(choreIds);
             $('#currentChoresLocalStorage').listview('refresh'); 
         });        
