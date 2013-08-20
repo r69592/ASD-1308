@@ -6,9 +6,7 @@
 // ========= Every thing needed for home page to work =========
 $('#home').on('pageinit', function(){
 
-
-      
-
+    // ======== JSON Ajax call ========
     $(function(){
         
         $.ajax({
@@ -31,7 +29,8 @@ $('#home').on('pageinit', function(){
             }
         });
     });
-      
+
+    // ======= XML Ajax call =======  
     $(function(){
             
         $.ajax({
@@ -58,36 +57,53 @@ $('#home').on('pageinit', function(){
         });
     }); 
 
-
-$(function(e){
-    
-    if (localStorage.length === 0) {
-            alert("Storage is Empty.");
-           
-    } else {
-        $(localStorage).each(function(i){
-             var choreIds = '<li><a data-key="'+
-                  key + '" href="#" class="choreList">' + 
-                  myId + ' : <br/>' +
-                  date + ' </a></li>';
-            
-
-            var key = localStorage.key(i);
-            var value = localStorage.getItem(key);
-            var obj = JSON.parse(value);
+    // ========= Display data =========
+    $(function(e){
+        
+        if (localStorage.length === 0) {
+                alert("Storage is Empty.");
                
-            var myId = obj['chore'];
-            var date = obj['choreDate'];
+        } else {
+            $(localStorage.length).each(function(i){
+                
+                var key = localStorage.key(i);
+                var value = localStorage.getItem(key);
+                var obj = JSON.parse(value);
+                //var myKey = obj.key[i];   
+                var myId = obj.chore[1];
+                var date = obj.choreDate[1];
 
-            console.log(date);
-            
-            $('#currentChoresLocalStorage').append(choreIds);
-            $('#currentChoresLocalStorage').listview('refresh'); 
-        });        
-    }
-});
+                var choreIds = '<li><a data-key="'+
+                    key + '" href="#" class="choreList">' + 
+                    myId + ' :       <br/>' +
+                    date + ' </a></li>';
+                
+                $('#currentChoresLocalStorage').append(choreIds);
+                $('#currentChoresLocalStorage').listview('refresh'); 
+            });        
+        }
+    });
 
-
+    // ======= Display / edit ======
+    $('a.choreList.ui-link-inherit').on('click', function(event) {
+        console.log("a is working");
+        $('#recorderrors').dialog({
+        autoOpen: true,
+        title : title,
+        resizable : false,
+        buttons : {
+            'CANCEL' : {
+                text : messages.Cancel,
+                click : function(){$(this).dialog('close')}
+            },
+            'OK' : {
+                text : messages.Ok,
+                click : okButtonCallback
+            }
+        }
+    });
+        event.preventDefault();
+    });
 
 
 
