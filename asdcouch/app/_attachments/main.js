@@ -5,13 +5,19 @@
 
 
 	// ========= Every thing needed for home page to work =========
-	$('#home').on('pageinit', function(){
+	$(document).on('pageinit', '#home' , function(){
 	
-	    // ======== JSON Ajax call ========
+		$.couch.db("asdprojects").view("dailychores", {
+			success: function(data) {
+				console.log(data);
+			}
+		});
+	
+	    /*// ======== JSON Ajax call ========
 	    $(function(){
-	        
 	        $.ajax({
 	            url: "_view/asdprojects",
+	            
 	            dataType: "json",
 	            success: function(data){
 	            	
@@ -35,38 +41,10 @@
 	               
 	            }
 	        });
-	    });
-	 
-	/*
-	    // ========= Display data =========
-	    $(function(e){
-	        
-	        if (localStorage.length === 0) {
-	                console.log("Storage is Empty.");
-	               
-	        } else {
-	            $(localStorage.length).each(function(i){
-	                
-	                var key = localStorage.key(i);
-	                var value = localStorage.getItem(key);
-	                var obj = JSON.parse(value);
-	                //var myKey = obj.key[i];   
-	                var myId = obj.chore[1];
-	                var date = obj.choreDate[1];
-	
-	                var choreIds = '<li><a data-key="'+
-	                    key + '" href="#" class="choreList">' + 
-	                    myId + ' :       <br/>' +
-	                    date + ' </a></li>';
-	                
-	                $('#currentChoresLocalStorage').append(choreIds);
-	                $('#currentChoresLocalStorage').listview('refresh'); 
-	            });        
-	        }
-	    });
-	*/
+	    });*/
+
 	    // ======= Display / edit ======
-	    $('a.choreList.ui-link-inherit').on('click', function(event) {
+	    $('.choreList.ui-link-inherit').on('click', function(event) {
 	        console.log("a is working");
 	        $('#recorderrors').dialog({
 	        autoOpen: true,
@@ -93,7 +71,7 @@
 	
 	
 	// ========= Every thing needed for AddItem page to work =========
-	$('#addItem').on('pageinit', function(e){
+	$(document).on('pageinit', '#addItem' , function(e){
 	   var myForm = $('#itemForm'); 
 	    $('#saveButton').on('click', function(e){
 	       $('#itemForm').validate({
@@ -115,12 +93,12 @@
 	});
 	
 	// ========= Every thing needed for info page to work =========
-	$('#info').on('pageinit', function(){
+	$(document).on('pageinit', '#info',  function(){
 	
 	});
 	
 	// ========= Every thing needed for unfinishedChore page to work =========
-	$('#unfinishedChore').on('pageinit', function(){
+	$(document).on('pageinit', '#unfinishedChore', function(){
 	
 	});
 	
