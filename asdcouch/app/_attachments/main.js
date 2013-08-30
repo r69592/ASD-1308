@@ -78,7 +78,7 @@
 	                var choreDate = chore.value.choreDate;
 	                
 	                   var choreIds = '<li><a id="'+
-	                       choreName + '" href="#recorderrors" class="choreList">' + 
+	                       choreName + '" href="#" class="choreList">' + 
 	                       choreLocation + ': ' + choreName + ' : ' + 
 	                       choreDate + ' </a></li>';
 						
